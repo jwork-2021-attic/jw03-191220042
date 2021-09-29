@@ -24,6 +24,8 @@ SteganographyFactory 类编译排序类，读入图片并进行编码。在编�
 
 （2）https://github.com/jwork-2021/jw03-191220042/blob/main/example.SelectSorter.png
 
-##3.动画如下：
+## 3.动画如下：
 [![asciicast](https://asciinema.org/a/ZiHIuIsH5ot8Gt5zegYHJ5fBp.svg)](https://asciinema.org/a/ZiHIuIsH5ot8Gt5zegYHJ5fBp)
 
+## 4.
+我使用了李广源同学的图片，结果正确。
