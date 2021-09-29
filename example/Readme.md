@@ -19,5 +19,11 @@ SteganographyClassLoader loader = new SteganographyClassLoader(
 
 SteganographyFactory 类编译排序类，读入图片并进行编码。在编码过程中，从图片中读入RGB的数据与类的字节码相运算，再将结果setRGB进新的图片。
 
+## 2.两张图片的URL为
+（1）https://github.com/jwork-2021/jw03-191220042/blob/main/example.QuickSorter.png
+
+（2）https://github.com/jwork-2021/jw03-191220042/blob/main/example.SelectSorter.png
+
+##3.动画如下：
 [![asciicast](https://asciinema.org/a/ZiHIuIsH5ot8Gt5zegYHJ5fBp.svg)](https://asciinema.org/a/ZiHIuIsH5ot8Gt5zegYHJ5fBp)
 
