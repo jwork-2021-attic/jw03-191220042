@@ -40,7 +40,7 @@ public class SteganographyEncoder {
         return encode(bytes);
     }
 
-    public byte[] decodeByteArray(){
+    public byte[] decodeByteArray() {
         return decode();
     }
 
@@ -78,7 +78,36 @@ public class SteganographyEncoder {
         return encode(finalBytes);
     }
 
-    public File decodeFile(String resultPath) throws DecodingException {
+    //    public File decodeFile(String resultPath) throws DecodingException {
+//        byte[] bytes = decode();
+//        int nameSize = byteArrayToInt(Arrays.copyOfRange(bytes, 0, 4));
+//        if (nameSize <= 0 || nameSize > (bytes.length - 8)) {
+//            throw new DecodingException("NameSize", nameSize);
+//        }
+//        int fileSize = byteArrayToInt(Arrays.copyOfRange(bytes, 4, 8));
+//        if (fileSize < 0 || fileSize > (bytes.length - 8)) {
+//            throw new DecodingException("DecodedFileSize", fileSize);
+//        }
+//        if (nameSize + fileSize > (bytes.length - 8)) {
+//            throw new DecodingException("NameSize and DecodedFileSize", nameSize + fileSize);
+//        }
+//        byte[] nameBytes = Arrays.copyOfRange(bytes, 8, 8 + nameSize);
+//        byte[] fileBytes = Arrays.copyOfRange(bytes, 8 + nameSize, 8 + nameSize + fileSize);
+//
+//        StringBuilder sb = new StringBuilder();
+//        for (byte nameByte : nameBytes) {
+//            sb.append((char) nameByte);
+//        }
+//        String name = sb.toString();
+//        File file = new File(resultPath + "decoded_" + name);
+//        try {
+//            FileUtils.writeByteArrayToFile(file, fileBytes);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return file;
+//    }
+    public byte[] decodeFile() throws DecodingException {
         byte[] bytes = decode();
         int nameSize = byteArrayToInt(Arrays.copyOfRange(bytes, 0, 4));
         if (nameSize <= 0 || nameSize > (bytes.length - 8)) {
@@ -94,19 +123,10 @@ public class SteganographyEncoder {
         byte[] nameBytes = Arrays.copyOfRange(bytes, 8, 8 + nameSize);
         byte[] fileBytes = Arrays.copyOfRange(bytes, 8 + nameSize, 8 + nameSize + fileSize);
 
-        StringBuilder sb = new StringBuilder();
-        for (byte nameByte : nameBytes) {
-            sb.append((char) nameByte);
-        }
-        String name = sb.toString();
-        File file = new File(resultPath + "decoded_" + name);
-        try {
-            FileUtils.writeByteArrayToFile(file, fileBytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return file;
+       return  fileBytes;
     }
+
+
 
     public int getBitsFromColor() {
         return bitsFromColor;
@@ -135,6 +155,7 @@ public class SteganographyEncoder {
         int curPix = 0;
         int charOffset = 0;
 
+
         pixels[0] &= mask;
         for (byte aByte : bytes) {
             while (charOffset < 8) {
@@ -149,6 +170,7 @@ public class SteganographyEncoder {
 
                 charOffset += bitsFromColor;
                 curColor--;
+
             }
             charOffset %= 8;
         }
@@ -170,6 +192,7 @@ public class SteganographyEncoder {
 
         // TODO: Optimize this code to decode only needed number of bytes and not the
         // whole byte array
+
         for (int i = 0; i < maxNoOfBytes; i++) {
             byte oneByte = 0;
             while (charOffset < 8) {
